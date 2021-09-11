@@ -8,6 +8,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.files.DownloadActions.click;
+
 public class WikiTest {
     @BeforeAll
     static void beforeAll() {
@@ -17,8 +19,8 @@ public class WikiTest {
     void wikiTest(){
         open("https://github.com/selenide/selenide");
         $("#wiki-tab").click();
-        $("#wiki-body").shouldHave(text("Soft assertions"));
-        $("#wiki-body").$(byText("Soft assertions")).click();
+        $(".js-wiki-more-pages-link").click();
+        $("#wiki-pages-box").$(byText("SoftAssertions")).click();
         $("#wiki-content").shouldHave(text("JUnit5"),text("@ExtendWith({SoftAssertsExtension.class})"),text("$(\"#first\").should(visible).click();"));
     }
 }
